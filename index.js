@@ -76,7 +76,7 @@ class Bot extends EventEmitter {
          if (this.channels) {
              return Vow.fulfill({ channels: this.channels });
          }
-         return this._api('conversations.list');
+         return this._api('conversations.list',  {limit: 1000});
       }
 
     /**
@@ -101,6 +101,14 @@ class Bot extends EventEmitter {
         }
 
         return this._api('usergroups.list');
+    }
+
+    /**
+     * Get a list of all emoji
+     * @returns {vow.Promise}
+     */
+    getEmojis() {
+        return this._api('emoji.list');
     }
 
     /**
